@@ -1,0 +1,10 @@
+# Ignore gem-related folders
+*.gem
+.bundle/
+
+# Ignore rails temp directory for tests
+tmp/
+
+# Ignore project settings
+.idea/
+*.iml

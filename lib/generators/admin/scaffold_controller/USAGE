@@ -1,0 +1,12 @@
+Description:
+    Stubs out a scaffolded controller, its seven RESTful actions and related
+    views. Pass the model name, either CamelCased or under_scored. The
+    controller name is retrieved as a pluralized version of the model name
+    namespaces within Admin namespaced.
+
+    This generates a controller class in app/controllers/admin and invokes helper,
+    template engine and test framework generators.
+    It uses non-namespaced model in app/models
+
+Example:
+    `rails generate admin:scaffold_controller Post`

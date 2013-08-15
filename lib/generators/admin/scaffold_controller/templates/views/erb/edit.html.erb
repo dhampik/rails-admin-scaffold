@@ -1,0 +1,6 @@
+<h1>Editing <%= singular_table_name %></h1>
+
+<%%= render 'form' %>
+
+<%%= link_to 'Show', <%= "[:#{prefix}, @#{singular_table_name}]" %> %> |
+<%%= link_to 'Back', <%= prefixed_index_helper %>_path %>
