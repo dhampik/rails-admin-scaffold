@@ -1,3 +1,4 @@
+require 'rubygems/specification'
 require 'rails/generators/named_base'
 require 'rails/generators/resource_helpers'
 
@@ -7,6 +8,8 @@ module Admin
       include Rails::Generators::ResourceHelpers
 
       source_root File.expand_path('../templates', __FILE__)
+
+      class_option :template_engine, desc: 'Template engine to be invoked (erb or haml).'
 
       check_class_collision suffix: "Controller"
 
@@ -31,12 +34,19 @@ module Admin
       end
 
       def create_controller_files
-        template "controllers/controller.erb", File.join('app/controllers', prefix, class_path, "#{controller_file_name}_controller.rb")
+        # I think there should be a better way to detect if jbuilder is in use
+        begin
+          if Gem::Specification.find_by_name('jbuilder')
+            template "controllers/jbuilder/controller.rb.erb", File.join('app/controllers', prefix, class_path, "#{controller_file_name}_controller.rb")
+          end
+        rescue Exception
+          # I know I'm doing bad. If you know a better way, please let me know
+          template "controllers/railties/controller.rb.erb", File.join('app/controllers', prefix, class_path, "#{controller_file_name}_controller.rb")
+        end
       end
 
       def create_test_files
-        template "tests/test_unit/functional_test.erb",
-                 File.join("test/controllers", prefix, controller_class_path, "#{controller_file_name}_controller_test.rb")
+        template "tests/test_unit/functional_test.rb.erb", File.join("test/controllers", prefix, controller_class_path, "#{controller_file_name}_controller_test.rb")
       end
 
       hook_for :helper, in: :rails do |helper|
@@ -50,8 +60,20 @@ module Admin
       def copy_view_files
         available_views.each do |view|
           filename = filename_with_extensions(view)
-          template "views/#{handler}/#{filename}", File.join("app/views", prefix, controller_file_path, filename)
+          template "views/#{handler}/#{filename}.erb", File.join("app/views", prefix, controller_file_path, filename)
         end
+
+        # I think there should be a better way to detect if jbuilder is in use
+        begin
+          if Gem::Specification.find_by_name('jbuilder')
+            %w(index show).each do |view|
+              template "views/jbuilder/#{view}.json.jbuilder.erb", File.join("app/views", prefix, controller_file_path, "#{view}.json.jbuilder")
+            end
+          end
+        rescue Exception
+          # I know I'm doing bad. If you know a better way, please let me know
+        end
+
       end
 
       hook_for :assets, in: :rails do |assets|
@@ -93,7 +115,7 @@ module Admin
       end
 
       def handler
-        :erb
+        options[:template_engine]
       end
 
       def filename_with_extensions(name)
@@ -134,6 +156,18 @@ module Admin
             "#{name}: @#{singular_table_name}.#{name}"
           end
         end.sort.join(', ')
+      end
+
+      def attributes_list_with_timestamps
+        attributes_list(attributes_names + %w(created_at updated_at))
+      end
+
+      def attributes_list(attributes = attributes_names)
+        if self.attributes.any? {|attr| attr.name == 'password' && attr.type == :digest}
+          attributes = attributes.reject {|name| %w(password password_confirmation).include? name}
+        end
+
+        attributes.map { |a| ":#{a}"} * ', '
       end
 
     end

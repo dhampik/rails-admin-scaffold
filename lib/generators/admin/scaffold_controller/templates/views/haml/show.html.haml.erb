@@ -1,0 +1,11 @@
+%p#notice= notice
+
+<% for attribute in attributes -%>
+%p
+  %b <%= attribute.human_name %>:
+  = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+= link_to 'Edit', edit_<%= prefixed_plain_model_url %>_path(@<%= singular_table_name %>)
+\|
+= link_to 'Back', <%= prefixed_index_helper %>_path

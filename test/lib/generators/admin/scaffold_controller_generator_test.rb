@@ -65,11 +65,19 @@ class Admin::Generators::ScaffoldControllerGeneratorTest < Rails::Generators::Te
     assert_file "test/helpers/admin/users_helper_test.rb", /class Admin::UsersHelperTest < ActionView::TestCase/
   end
 
-  def test_views_are_generated
+  def test_erb_views_are_generated
     run_generator
 
     %w(index edit new show).each do |view|
       assert_file "app/views/admin/users/#{view}.html.erb"
+    end
+  end
+
+  def test_haml_views_are_generated
+    run_generator ['user', '-e', 'haml']
+
+    %w(index edit new show).each do |view|
+      assert_file "app/views/admin/users/#{view}.html.haml"
     end
   end
 
