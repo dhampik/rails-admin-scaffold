@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     rails-admin-scaffold (0.0.2.pre)
-      railties (>= 4.0, < 4.1)
+      rails (>= 4.0, < 4.1)
 
 GEM
   remote: https://rubygems.org/
@@ -84,6 +84,5 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.2)
-  rails (>= 3.1, < 4.1)
   rails-admin-scaffold!
   rake
