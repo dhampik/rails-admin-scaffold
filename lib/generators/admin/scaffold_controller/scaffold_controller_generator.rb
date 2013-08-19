@@ -35,12 +35,10 @@ module Admin
 
       def create_controller_files
         # I think there should be a better way to detect if jbuilder is in use
-        begin
-          if Gem::Specification.find_by_name('jbuilder')
-            template "controllers/jbuilder/controller.rb.erb", File.join('app/controllers', prefix, class_path, "#{controller_file_name}_controller.rb")
-          end
-        rescue Exception
-          # I know I'm doing bad. If you know a better way, please let me know
+        # If you know it, please let me know
+        if Gem::Specification.find_all_by_name('jbuilder').length >= 1
+          template "controllers/jbuilder/controller.rb.erb", File.join('app/controllers', prefix, class_path, "#{controller_file_name}_controller.rb")
+        else
           template "controllers/railties/controller.rb.erb", File.join('app/controllers', prefix, class_path, "#{controller_file_name}_controller.rb")
         end
       end
@@ -64,16 +62,11 @@ module Admin
         end
 
         # I think there should be a better way to detect if jbuilder is in use
-        begin
-          if Gem::Specification.find_by_name('jbuilder')
-            %w(index show).each do |view|
-              template "views/jbuilder/#{view}.json.jbuilder.erb", File.join("app/views", prefix, controller_file_path, "#{view}.json.jbuilder")
-            end
+        if Gem::Specification.find_all_by_name('jbuilder').length >= 1
+          %w(index show).each do |view|
+            template "views/jbuilder/#{view}.json.jbuilder.erb", File.join("app/views", prefix, controller_file_path, "#{view}.json.jbuilder")
           end
-        rescue Exception
-          # I know I'm doing bad. If you know a better way, please let me know
         end
-
       end
 
       hook_for :assets, in: :rails do |assets|
