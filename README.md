@@ -1,7 +1,7 @@
-rails-admin-scaffold
+rails-admin-scaffold [![Build Status](https://travis-ci.org/dhampik/rails-admin-scaffold.png?branch=develop)](https://travis-ci.org/dhampik/rails-admin-scaffold)
 ====================
 
-Rails generator which allows to scaffold admin controllers, views with proper (non-namespaced) models, helpers, tests and routes
+Rails 4 generator which allows to scaffold admin controllers, views with proper (non-namespaced) models, helpers, tests and routes
 
 How to use:
 -----------
@@ -11,7 +11,10 @@ How to use:
 
 Plans:
 ------
-* add haml suppurt
-* add jbuilder support
-* improve tests
-* use travis for ci
+* <del>add haml suppurt</del>
+* <del>add jbuilder support</del>
+* <del>improve tests</del>
+* <del>use travis for ci</del>
+* add minitest support
+* add rspec support
+* split controller_scaffold into several separate generators
