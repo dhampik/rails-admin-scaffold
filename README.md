@@ -8,6 +8,7 @@ How to use
 * Add ```gem 'rails-admin-scaffold', 'x.x.x'``` to your Gemfile
 * Run ```bundle install```
 * Create admin scaffold with e. g. ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean```
+* And don't forget to generate model itself ```bin/rails g model Post title:string content:text published:boolean``` and apply migrations ```bin/rake db:migrate```
 
 Supports
 --------
