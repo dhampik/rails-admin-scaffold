@@ -9,6 +9,16 @@ How to use
 * Run ```bundle install```
 * Create admin scaffold with e. g. ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean```
 
+#### How to customize your generator templates
+
+Put the '_form.html.erb.erb', 'edit.html.erb.erb', 'index.html.erb.erb', 'new.html.erb.erb', 'show.html.erb.erb' into '/lib/templates/admin/scaffold_controller/views/erb/'
+
+Then the generator will use those templates to generate scaffold.
+
+
+
+
+
 Supports
 --------
 * Rails 4 only
