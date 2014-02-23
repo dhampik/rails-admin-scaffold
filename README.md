@@ -17,11 +17,11 @@ Then the generator will use those templates to generate scaffold.
 
 #### How to customize your prefix name
 
-Type your command with option --prefix_name="xxxx".
+Type your command with option --prefix_name=xxxx.
 
 If you want change the prefix name 'admin' to 'manager'
 
-e. g. ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --prefix_name="manager"```
+e. g. ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --prefix_name=manager```
 
 
 
