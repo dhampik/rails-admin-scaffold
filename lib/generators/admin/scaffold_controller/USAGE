@@ -8,5 +8,8 @@ Description:
     template engine and test framework generators.
     It uses non-namespaced model in app/models
 
+    If you want change the prefix name 'admin' to something else you can pass --prefix_name option
+
 Example:
-    `rails generate admin:scaffold_controller Post`
+    `bin/rails generate admin:scaffold_controller Post`
+    `bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --prefix_name=manager`

@@ -20,16 +20,13 @@ Then the generator will use those templates to generate scaffold.
 
 Type your command with option --prefix_name=xxxx.
 
-If you want change the prefix name 'admin' to 'manager'
+If you want change the prefix name 'admin' to 'manager' for example you can do something like this:
 
-e. g. ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --prefix_name=manager```
-
-
-
+```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --prefix_name=manager```
 
 Supports
 --------
-* Rails 4 only
+* Rails 4+
 * Rails default generators (erb, test::unit)
 * Haml (if haml is used for views generation)
 * Jbuilder (if jbuilder is installed for the project)
@@ -40,6 +37,7 @@ Plans
 * <del>add jbuilder support</del>
 * <del>improve tests</del>
 * <del>use travis for ci</del>
+* ability to specify parent controller name (e.g. AdminController instead of ApplicationController)
 * add minitest support
 * add rspec support
 * split controller_scaffold into several separate generators

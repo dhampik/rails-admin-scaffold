@@ -3,9 +3,9 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
+  - 2.1.0
+  - 2.1.1
   - ruby-head
-  - jruby-19mode
-  - rbx-19mode
 
 gemfile:
   - Gemfile
@@ -13,8 +13,6 @@ gemfile:
 matrix:
   allow_failures:
     - rvm: ruby-head
-    - rvm: jruby-19mode
-    - rvm: rbx-19mode
 
 notifications:
   email: false
