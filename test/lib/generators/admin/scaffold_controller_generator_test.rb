@@ -116,4 +116,12 @@ class Admin::Generators::ScaffoldControllerGeneratorTest < Rails::Generators::Te
     end
   end
 
+  def test_with_prefix_name
+    run_generator ["User", "name:string", "age:integer", "--prefix_name=manager"]
+    assert_file "app/controllers/manager/users_controller.rb" do |content|
+      assert_match(/Manager\:\:/, content)
+    end
+  end
+
+
 end
