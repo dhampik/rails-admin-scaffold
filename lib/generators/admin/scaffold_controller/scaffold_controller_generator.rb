@@ -23,6 +23,9 @@ module Admin
       class_option :html, type: :boolean, default: true,
                    desc: "Generate a scaffold with HTML output"
 
+      class_option :prefix_name, banner: "admin", type: :string, default: "admin",
+                   desc: "Define the prefix of controller"
+
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
 
       def initialize(args, *options) #:nodoc:
@@ -76,7 +79,7 @@ module Admin
       protected
 
       def prefix
-        'admin'
+        options[:prefix_name]
       end
 
       def prefixed_class_name
