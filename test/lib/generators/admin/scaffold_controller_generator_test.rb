@@ -123,5 +123,10 @@ class Admin::Generators::ScaffoldControllerGeneratorTest < Rails::Generators::Te
     end
   end
 
-
+  def test_with_parent_controller
+    run_generator ["User", "name:string", "age:integer", "--parent_controller=admin"]
+    assert_file "app/controllers/admin/users_controller.rb" do |content|
+      assert_match(/< AdminController/, content)
+    end
+  end
 end

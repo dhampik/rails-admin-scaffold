@@ -24,6 +24,18 @@ If you want change the prefix name 'admin' to 'manager' for example you can do s
 
 ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --prefix_name=manager```
 
+This will generate `class Manager::PostsController < ApplicationController`
+
+#### How to customize your parent controller
+
+If you want all your Admin controllers to inherit from another
+controller like `AdminController` you can specify the
+--parent_controller option:
+
+```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --parent_controller=admin```
+
+This will generate `class Admin::PostsController < AdminController`
+
 Supports
 --------
 * Rails 4+
@@ -37,7 +49,7 @@ Plans
 * <del>add jbuilder support</del>
 * <del>improve tests</del>
 * <del>use travis for ci</del>
-* ability to specify parent controller name (e.g. AdminController instead of ApplicationController)
+* <del>ability to specify parent controller name (e.g. AdminController instead of ApplicationController)</del>
 * add minitest support
 * add rspec support
 * split controller_scaffold into several separate generators
