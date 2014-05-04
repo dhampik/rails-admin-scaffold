@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-admin-scaffold (0.0.4)
+    rails-admin-scaffold (0.0.5)
       rails (>= 4.0)
 
 GEM
