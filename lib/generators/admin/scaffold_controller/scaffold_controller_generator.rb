@@ -26,6 +26,9 @@ module Admin
       class_option :prefix_name, banner: "admin", type: :string, default: "admin",
                    desc: "Define the prefix of controller"
 
+      class_option :parent_controller, banner: "admin", type: :string, default: "application",
+                   desc: "Define the parent controller"
+
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
 
       def initialize(args, *options) #:nodoc:
@@ -88,6 +91,10 @@ module Admin
 
       def prefixed_controller_class_name
         "#{prefix.capitalize}::#{controller_class_name}"
+      end
+
+      def parent_controller_class_name
+        options[:parent_controller].capitalize
       end
 
       def prefixed_route_url
