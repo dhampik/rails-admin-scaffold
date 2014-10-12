@@ -29,6 +29,9 @@ module Admin
       class_option :parent_controller, banner: "admin", type: :string, default: "application",
                    desc: "Define the parent controller"
 
+      class_option :bootstrap,  required: false, default: nil, aliases: :b,
+                   desc: "Use bootstrap for templates"
+
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
 
       def initialize(args, *options) #:nodoc:
@@ -64,7 +67,12 @@ module Admin
       def copy_view_files
         available_views.each do |view|
           filename = filename_with_extensions(view)
-          template "views/#{handler}/#{filename}.erb", File.join("app/views", prefix, controller_file_path, filename)
+          if bootstrap && handler == :erb #only support ERB for now, should be easy to support HAML later.
+            template_path = "views/#{handler}_bootstrap/#{filename}.erb"
+          else
+            template_path = "views/#{handler}/#{filename}.erb"
+          end
+          template template_path, File.join("app/views", prefix, controller_file_path, filename)
         end
 
         # I think there should be a better way to detect if jbuilder is in use
@@ -80,6 +88,10 @@ module Admin
       end
 
       protected
+
+      def bootstrap
+        options[:bootstrap]
+      end
 
       def prefix
         options[:prefix_name]

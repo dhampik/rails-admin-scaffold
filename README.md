@@ -36,6 +36,14 @@ controller like `AdminController` you can specify the
 
 This will generate `class Admin::PostsController < AdminController`
 
+#### How to generate bootstrap-friendly views
+
+If you want to generate bootstrap friendly views, use the `--bootstrap` option (`-b` for short)
+
+```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --bootstrap```
+
+Bootstrap views are only supported for ERB at this stage - sorry, no HAML support yet.
+
 Supports
 --------
 * Rails 4+
