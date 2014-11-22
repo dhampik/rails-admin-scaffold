@@ -71,6 +71,20 @@ class Admin::Generators::ScaffoldControllerGeneratorTest < Rails::Generators::Te
     %w(index edit new show).each do |view|
       assert_file "app/views/admin/users/#{view}.html.erb"
     end
+
+    # Ensure we're not using the bootstrap templates (which will have a class inside the table tag)
+    assert_file "app/views/admin/users/index.html.erb", /<table>/
+  end
+
+  def test_bootstrap_views_are_generated
+    run_generator ['user', '-b']
+
+    %w(index edit new show).each do |view|
+      assert_file "app/views/admin/users/#{view}.html.erb"
+    end
+
+    # Ensure we're not using the regular erb templates
+    assert_file "app/views/admin/users/index.html.erb", /<table class="table/
   end
 
   def test_haml_views_are_generated
