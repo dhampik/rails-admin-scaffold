@@ -29,7 +29,7 @@ module Admin
       class_option :parent_controller, banner: "admin", type: :string, default: "application",
                    desc: "Define the parent controller"
 
-      class_option :bootstrap,  required: false, default: nil, aliases: :b,
+      class_option :bootstrap,  required: false, default: nil, aliases: '-b',
                    desc: "Use bootstrap for templates"
 
       argument :attributes, type: :array, default: [], banner: "field:type field:type"
