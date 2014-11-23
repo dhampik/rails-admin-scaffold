@@ -42,13 +42,12 @@ If you want to generate bootstrap friendly views, use the `--bootstrap` option (
 
 ```bin/rails g admin:scaffold_controller Post title:string content:text published:boolean --bootstrap```
 
-Bootstrap views are only supported for ERB at this stage - sorry, no HAML support yet.
-
 Supports
 --------
 * Rails 4+
 * Rails default generators (erb, test::unit)
 * Haml (if haml is used for views generation)
+* Twitter bootstrap support
 * Jbuilder (if jbuilder is installed for the project)
 
 Plans
