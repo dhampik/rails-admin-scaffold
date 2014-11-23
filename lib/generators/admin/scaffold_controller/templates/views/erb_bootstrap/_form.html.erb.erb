@@ -16,34 +16,43 @@
 
 <% attributes.each do |attribute| -%>
   <div class="form-group">
-<% if attribute.password_digest? -%>
-    <%%= f.label :password, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%%= f.password_field :password, :class => 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%%= f.label :password_confirmation, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%%= f.password_field :password_confirmation, :class => 'form-control' %>
-    </div>
-<% else -%>
-  <% if attribute.reference? -%>
-    <%%= f.label :<%= attribute.column_name %>, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, :class => 'form-control' %>
-    </div>
+  <% if attribute.field_type != :check_box -%>
+    <% if attribute.password_digest? -%>
+        <%%= f.label :password, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+          <%%= f.password_field :password, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+          <%%= f.password_field :password_confirmation, :class => 'form-control' %>
+        </div>
+    <% else -%>
+      <% if attribute.reference? -%>
+        <%%= f.label :<%= attribute.column_name %>, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, :class => 'form-control' %>
+        </div>
+      <% else -%>
+        <%%= f.label :<%= attribute.name %>, :class => 'control-label col-md-2' %>
+        <div class="col-md-10">
+          <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => 'form-control' %>
+        </div>
+      <% end -%>
+    <% end -%>
   <% else -%>
-    <%%= f.label :<%= attribute.name %>, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => 'form-control' %>
+    <div class="col-md-offset-2 col-md-10">
+      <%%= f.label :<%= attribute.name %>, for: nil do %>
+        <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+        <%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %>
+      <%% end %>
     </div>
   <% end -%>
-<% end -%>
   </div>
 <% end -%>
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
+    <div class="col-md-offset-2 col-md-10">
       <%%= f.submit nil, :class => 'btn btn-primary' %>
     </div>
   </div>
