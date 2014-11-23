@@ -1,0 +1,25 @@
+= form_for(<%= "[:#{prefix}, @#{singular_table_name}], html: { class: 'form-horizontal  #{singular_table_name}'} " %>) do |f|
+  - if @<%= singular_table_name %>.errors.any?
+    #error_explanation.panel.panel-danger
+      .panel-heading
+        %h2.panel-title= "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
+      .panel-body
+        %ul
+          - @<%= singular_table_name %>.errors.full_messages.each do |msg|
+            %li= msg
+
+<% for attribute in attributes -%>
+  <%- if attribute.field_type != :check_box -%>
+  .form-group
+    = f.label :<%= attribute.name %>, class: 'control-label col-md-2'
+    .col-md-10= f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control'
+  <%- else -%>
+    .col-md-offset-2.col-md-10
+      = f.label :<%= attribute.name %>, for: nil do
+        = f.<%= attribute.field_type %> :<%= attribute.name %>
+        = <%= class_name %>.human_attribute_name(:<%= attribute.name %>)
+  <%- end -%>
+<% end -%>
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit nil, class: 'btn btn-primary'

@@ -67,7 +67,7 @@ module Admin
       def copy_view_files
         available_views.each do |view|
           filename = filename_with_extensions(view)
-          if bootstrap && handler == :erb #only support ERB for now, should be easy to support HAML later.
+          if bootstrap
             template_path = "views/#{handler}_bootstrap/#{filename}.erb"
           else
             template_path = "views/#{handler}/#{filename}.erb"

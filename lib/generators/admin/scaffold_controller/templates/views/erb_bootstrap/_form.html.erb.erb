@@ -1,4 +1,4 @@
-<%%= form_for(<%= "[:#{prefix}, @#{singular_table_name}]" %>, :html => { :class => "form-horizontal <%= singular_table_name %>" }) do |f| %>
+<%%= form_for(<%= "[:#{prefix}, @#{singular_table_name}]" %>, html: { class: 'form-horizontal <%= singular_table_name %>' }) do |f| %>
   <%% if @<%= singular_table_name %>.errors.any? %>
     <div id="error_explanation" class="panel panel-danger">
       <div class="panel-heading">
@@ -16,44 +16,44 @@
 
 <% attributes.each do |attribute| -%>
   <div class="form-group">
-  <% if attribute.field_type != :check_box -%>
-    <% if attribute.password_digest? -%>
-        <%%= f.label :password, :class => 'control-label col-md-2' %>
-        <div class="col-md-10">
-          <%%= f.password_field :password, :class => 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
-        <div class="col-md-10">
-          <%%= f.password_field :password_confirmation, :class => 'form-control' %>
-        </div>
-    <% else -%>
-      <% if attribute.reference? -%>
-        <%%= f.label :<%= attribute.column_name %>, :class => 'control-label col-md-2' %>
-        <div class="col-md-10">
-          <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, :class => 'form-control' %>
-        </div>
-      <% else -%>
-        <%%= f.label :<%= attribute.name %>, :class => 'control-label col-md-2' %>
-        <div class="col-md-10">
-          <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => 'form-control' %>
-        </div>
-      <% end -%>
-    <% end -%>
-  <% else -%>
+  <%- if attribute.field_type != :check_box -%>
+    <%- if attribute.password_digest? -%>
+    <%%= f.label :password, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%%= f.password_field :password, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%%= f.label :password_confirmation, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+    <%- else -%>
+      <%- if attribute.reference? -%>
+    <%%= f.label :<%= attribute.column_name %>, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %>, class: 'form-control' %>
+    </div>
+      <%- else -%>
+    <%%= f.label :<%= attribute.name %>, class: 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, class: 'form-control' %>
+    </div>
+      <%- end -%>
+    <%- end -%>
+  <%- else -%>
     <div class="col-md-offset-2 col-md-10">
       <%%= f.label :<%= attribute.name %>, for: nil do %>
         <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
         <%%= <%= class_name %>.human_attribute_name(:<%= attribute.name %>) %>
       <%% end %>
     </div>
-  <% end -%>
+  <%- end -%>
   </div>
 <% end -%>
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-      <%%= f.submit nil, :class => 'btn btn-primary' %>
+      <%%= f.submit nil, class: 'btn btn-primary' %>
     </div>
   </div>
 <%% end %>

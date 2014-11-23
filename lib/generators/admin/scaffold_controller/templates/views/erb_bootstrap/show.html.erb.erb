@@ -7,5 +7,5 @@
 </dl>
 
 <% end -%>
-<%%= link_to 'Edit', edit_<%= prefixed_plain_model_url %>_path(@<%= singular_table_name %>), :class => 'btn btn-default' %> |
-<%%= link_to 'Back', <%= prefixed_index_helper %>_path, :class => 'btn btn-default' %>
+<%%= link_to 'Edit', edit_<%= prefixed_plain_model_url %>_path(@<%= singular_table_name %>), class: 'btn btn-default' %>
+<%%= link_to 'Back', <%= prefixed_index_helper %>_path, class: 'btn btn-default' %>

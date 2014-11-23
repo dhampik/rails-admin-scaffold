@@ -20,9 +20,9 @@
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
 <% end -%>
-        <td><%%= link_to 'Show', <%= "[:#{prefix}, #{singular_table_name}]" %>, :class => 'btn btn-default btn-xs' %></td>
-        <td><%%= link_to 'Edit', edit_<%= prefixed_plain_model_url %>_path(<%= singular_table_name %>), :class => 'btn btn-default btn-xs' %></td>
-        <td><%%= link_to 'Destroy', <%= "[:#{prefix}, #{singular_table_name}]" %>, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %></td>
+        <td><%%= link_to 'Show', <%= "[:#{prefix}, #{singular_table_name}]" %>, class: 'btn btn-default btn-xs' %></td>
+        <td><%%= link_to 'Edit', edit_<%= prefixed_plain_model_url %>_path(<%= singular_table_name %>), class: 'btn btn-default btn-xs' %></td>
+        <td><%%= link_to 'Destroy', <%= "[:#{prefix}, #{singular_table_name}]" %>, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
       </tr>
     <%% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%%= link_to 'New <%= human_name %>', new_<%= prefixed_plain_model_url %>_path, :class => 'btn btn-primary' %>
+<%%= link_to 'New <%= human_name %>', new_<%= prefixed_plain_model_url %>_path, class: 'btn btn-primary' %>

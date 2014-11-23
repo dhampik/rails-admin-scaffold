@@ -76,7 +76,7 @@ class Admin::Generators::ScaffoldControllerGeneratorTest < Rails::Generators::Te
     assert_file "app/views/admin/users/index.html.erb", /<table>/
   end
 
-  def test_bootstrap_views_are_generated
+  def test_erb_bootstrap_views_are_generated
     run_generator ['user', '-b']
 
     %w(index edit new show).each do |view|
@@ -94,6 +94,15 @@ class Admin::Generators::ScaffoldControllerGeneratorTest < Rails::Generators::Te
       assert_file "app/views/admin/users/#{view}.html.haml"
     end
   end
+
+  def test_haml_bootstrap_views_are_generated
+    run_generator ['user', '-b', '-e', 'haml']
+
+    %w(index edit new show).each do |view|
+      assert_file "app/views/admin/users/#{view}.html.haml"
+    end
+  end
+
 
   def test_functional_tests
     run_generator ["User", "name:string", "age:integer", "organization:references{polymorphic}"]

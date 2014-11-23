@@ -4,5 +4,5 @@
 
 <%%= render 'form' %>
 
-<%%= link_to 'Show', <%= "[:#{prefix}, @#{singular_table_name}]" %>, :class => 'btn btn-default' %> |
-<%%= link_to 'Back', <%= prefixed_index_helper %>_path, :class => 'btn btn-default' %>
+<%%= link_to 'Show', <%= "[:#{prefix}, @#{singular_table_name}]" %>, class: 'btn btn-default' %>
+<%%= link_to 'Back', <%= prefixed_index_helper %>_path, class: 'btn btn-default' %>
